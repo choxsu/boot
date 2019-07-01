@@ -1,10 +1,14 @@
 package com.choxsu.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 import javax.annotation.PostConstruct;
+import javax.sql.DataSource;
 
 /**
  * @author choxsu
@@ -20,7 +24,6 @@ public class MyConfiguration {
      */
     @PostConstruct
     public void openConnection() {
-        // ...
         System.out.println("Initialization");
     }
 

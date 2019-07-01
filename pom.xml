@@ -26,14 +26,29 @@
         </dependencies>
     </dependencyManagement>
 
-    <!-- Add typical dependencies for a web application -->
     <dependencies>
+        <!-- Add typical dependencies for a web application -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <!-- exclusion this tomcat servlet-->
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
+
+        <!-- add undertow servlet dependency-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-undertow</artifactId>
+        </dependency>
+
     </dependencies>
 
+    <!-- aliyun maven repository-->
     <repositories>
         <repository>
             <id>alimaven</id>
@@ -48,7 +63,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.choxsu.Example</mainClass>
+                    <mainClass>com.choxsu.Application</mainClass>
                 </configuration>
                 <executions>
                     <execution>

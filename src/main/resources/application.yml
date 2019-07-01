@@ -1,0 +1,13 @@
+environments:
+  dev:
+    url: https://dev.example.com
+    name: Developer Setup
+  prod:
+    url: https://another.example.com
+    name: My Cool App
+server:
+  port: 80
+---
+spring:
+  profiles:
+    active: development

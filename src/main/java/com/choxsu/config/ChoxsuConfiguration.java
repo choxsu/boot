@@ -28,7 +28,6 @@ public class ChoxsuConfiguration {
 
     private final HikariDataSource hikariDataSource;
 
-    @Autowired
     public ChoxsuConfiguration(HikariDataSource hikariDataSource) {
         this.hikariDataSource = hikariDataSource;
     }

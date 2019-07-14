@@ -22,7 +22,7 @@ public class ApplicationArgumentsConfig {
         this.arguments = arguments;
     }
 
-    private boolean containsDebugOption() {
+    public boolean containsDebugOption() {
         boolean debug = arguments.containsOption("debug");
         List<String> files = arguments.getNonOptionArgs();
         // if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]

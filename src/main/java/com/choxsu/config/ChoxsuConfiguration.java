@@ -12,10 +12,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
 import java.sql.Connection;
+import java.util.Arrays;
 
 /**
  * @author choxsu
@@ -23,13 +25,21 @@ import java.sql.Connection;
  */
 @Configuration
 public class ChoxsuConfiguration {
+    /**
+     * 开发环境识别码
+     */
+    private static final String DEV = "development";
 
     private static final Logger logger = LoggerFactory.getLogger(ChoxsuConfiguration.class);
 
     private final HikariDataSource hikariDataSource;
 
-    public ChoxsuConfiguration(HikariDataSource hikariDataSource) {
+    private final ConfigurableEnvironment environment;
+
+    @Autowired
+    public ChoxsuConfiguration(HikariDataSource hikariDataSource, ConfigurableEnvironment environment) {
         this.hikariDataSource = hikariDataSource;
+        this.environment = environment;
     }
 
     /**
@@ -42,7 +52,8 @@ public class ChoxsuConfiguration {
         arp.setDialect(new MysqlDialect());
         arp.setCache(CaffeineCache.me);
         arp.setTransactionLevel(Connection.TRANSACTION_READ_COMMITTED);
-        arp.setShowSql(BaseUtil.isDevelop());
+        arp.setDevMode(isDevelop());
+        arp.setShowSql(isDevelop());
         arp.getEngine().setSourceFactory(new ClassPathSourceFactory());
         arp.start();
         //扫描sql模板
@@ -50,6 +61,15 @@ public class ChoxsuConfiguration {
         // 数据库表映射
         _MappingKit.mapping(arp);
         logger.info("JFinal active record plugin initialization completed");
+    }
+
+    /**
+     * 获取开发模式
+     * @return true表示是开发模式
+     */
+    private boolean isDevelop() {
+        String[] activeProfiles = environment.getActiveProfiles();
+        return activeProfiles != null && Arrays.asList(activeProfiles).contains(DEV);
     }
 
     /**

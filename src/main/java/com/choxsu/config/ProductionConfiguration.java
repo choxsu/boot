@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Profile;
  * @date 2019/7/1
  */
 @Configuration
-@Profile("production")
+@Profile("prod")
 public class ProductionConfiguration {
 
 

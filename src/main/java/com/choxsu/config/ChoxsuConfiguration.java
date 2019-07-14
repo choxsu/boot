@@ -47,6 +47,7 @@ public class ChoxsuConfiguration {
      */
     @PostConstruct
     public void openConnection() {
+        long begin = System.currentTimeMillis();
         // 配置ActiveRecord插件
         ActiveRecordPlugin arp = new ActiveRecordPlugin(hikariDataSource);
         arp.setDialect(new MysqlDialect());
@@ -60,11 +61,13 @@ public class ChoxsuConfiguration {
         getSqlTemplate(PathKit.getRootClassPath() + "/sql", arp);
         // 数据库表映射
         _MappingKit.mapping(arp);
-        logger.info("JFinal active record plugin initialization completed");
+        long end = System.currentTimeMillis();
+        logger.info("JFinal active record plugin initialization completed in {} ms", end - begin);
     }
 
     /**
      * 获取开发模式
+     *
      * @return true表示是开发模式
      */
     private boolean isDevelop() {
@@ -74,6 +77,7 @@ public class ChoxsuConfiguration {
 
     /**
      * 扫描指定路径下的sql模板
+     *
      * @param path
      * @param arp
      */

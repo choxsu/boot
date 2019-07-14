@@ -6,7 +6,7 @@ spring:
     active: dev
 # mybatis-plus
 mybatis-plus:
-  mapper-locations: classpath*:config/mybatis-plus/*.xml
+  mapper-locations: classpath*:config/mybatis/*.xml
   global-config:
     banner: false
     db-config:

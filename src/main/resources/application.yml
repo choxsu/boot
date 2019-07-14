@@ -11,3 +11,4 @@ server:
 spring:
   profiles:
     active: development
+    include: db

@@ -13,12 +13,19 @@ import java.util.List;
  * @date 2019/7/1
  */
 @Component
-public class MyBean {
+public class ApplicationArgumentsConfig {
+
+    private final ApplicationArguments arguments;
 
     @Autowired
-    public MyBean(ApplicationArguments args) {
-        boolean debug = args.containsOption("debug");
-        List<String> files = args.getNonOptionArgs();
+    public ApplicationArgumentsConfig(ApplicationArguments arguments) {
+        this.arguments = arguments;
+    }
+
+    private boolean containsDebugOption() {
+        boolean debug = arguments.containsOption("debug");
+        List<String> files = arguments.getNonOptionArgs();
         // if run with "--debug logfile.txt" debug=true, files=["logfile.txt"]
+        return debug;
     }
 }

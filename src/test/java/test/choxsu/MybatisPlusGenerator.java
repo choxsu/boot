@@ -55,6 +55,7 @@ public class MybatisPlusGenerator {
         globalConfig.setOutputDir("C:\\Users\\Administrator\\Desktop\\generator");
         globalConfig.setAuthor("choxsu");
         globalConfig.setOpen(false);
+        globalConfig.setServiceName("%sService");
         return globalConfig;
     }
 

@@ -2,7 +2,7 @@ package com.choxsu.service.impl;
 
 import com.choxsu.common.entity.Images;
 import com.choxsu.common.mapper.ImagesMapper;
-import com.choxsu.service.IImagesService;
+import com.choxsu.service.ImagesService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-07-14
  */
 @Service
-public class ImagesServiceImpl extends ServiceImpl<ImagesMapper, Images> implements IImagesService {
+public class ImagesServiceImpl extends ServiceImpl<ImagesMapper, Images> implements ImagesService {
 
 }

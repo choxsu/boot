@@ -1,16 +1,16 @@
 package com.choxsu.service;
 
-import com.choxsu.common.entity.StuJson;
+import com.choxsu.common.entity.BlogCategory;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- *  服务类
+ * 类别表 服务类
  * </p>
  *
  * @author choxsu
  * @since 2019-07-14
  */
-public interface IStuJsonService extends IService<StuJson> {
+public interface BlogCategoryService extends IService<BlogCategory> {
 
 }

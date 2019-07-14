@@ -2,7 +2,7 @@ package com.choxsu.service.impl;
 
 import com.choxsu.common.entity.ReferMe;
 import com.choxsu.common.mapper.ReferMeMapper;
-import com.choxsu.service.IReferMeService;
+import com.choxsu.service.ReferMeService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-07-14
  */
 @Service
-public class ReferMeServiceImpl extends ServiceImpl<ReferMeMapper, ReferMe> implements IReferMeService {
+public class ReferMeServiceImpl extends ServiceImpl<ReferMeMapper, ReferMe> implements ReferMeService {
 
 }

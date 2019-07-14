@@ -2,7 +2,7 @@ package com.choxsu.service.impl;
 
 import com.choxsu.common.entity.Message;
 import com.choxsu.common.mapper.MessageMapper;
-import com.choxsu.service.IMessageService;
+import com.choxsu.service.MessageService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-07-14
  */
 @Service
-public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> implements IMessageService {
+public class MessageServiceImpl extends ServiceImpl<MessageMapper, Message> implements MessageService {
 
 }

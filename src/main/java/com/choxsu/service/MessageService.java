@@ -1,6 +1,6 @@
 package com.choxsu.service;
 
-import com.choxsu.common.entity.Visitor;
+import com.choxsu.common.entity.Message;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author choxsu
  * @since 2019-07-14
  */
-public interface IVisitorService extends IService<Visitor> {
+public interface MessageService extends IService<Message> {
 
 }

@@ -1,16 +1,16 @@
 package com.choxsu.service;
 
-import com.choxsu.common.entity.Message;
+import com.choxsu.common.entity.Images;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- *  服务类
+ * 图片上厂记录表 服务类
  * </p>
  *
  * @author choxsu
  * @since 2019-07-14
  */
-public interface IMessageService extends IService<Message> {
+public interface ImagesService extends IService<Images> {
 
 }

@@ -2,7 +2,7 @@ package com.choxsu.service.impl;
 
 import com.choxsu.common.entity.AccountOpen;
 import com.choxsu.common.mapper.AccountOpenMapper;
-import com.choxsu.service.IAccountOpenService;
+import com.choxsu.service.AccountOpenService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-07-14
  */
 @Service
-public class AccountOpenServiceImpl extends ServiceImpl<AccountOpenMapper, AccountOpen> implements IAccountOpenService {
+public class AccountOpenServiceImpl extends ServiceImpl<AccountOpenMapper, AccountOpen> implements AccountOpenService {
 
 }

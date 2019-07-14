@@ -2,7 +2,7 @@ package com.choxsu.service.impl;
 
 import com.choxsu.common.entity.UploadCounter;
 import com.choxsu.common.mapper.UploadCounterMapper;
-import com.choxsu.service.IUploadCounterService;
+import com.choxsu.service.UploadCounterService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-07-14
  */
 @Service
-public class UploadCounterServiceImpl extends ServiceImpl<UploadCounterMapper, UploadCounter> implements IUploadCounterService {
+public class UploadCounterServiceImpl extends ServiceImpl<UploadCounterMapper, UploadCounter> implements UploadCounterService {
 
 }

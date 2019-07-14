@@ -1,16 +1,16 @@
 package com.choxsu.service;
 
-import com.choxsu.common.entity.BlogTag;
+import com.choxsu.common.entity.StuName;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
- * 标签表 服务类
+ *  服务类
  * </p>
  *
  * @author choxsu
  * @since 2019-07-14
  */
-public interface IBlogTagService extends IService<BlogTag> {
+public interface StuNameService extends IService<StuName> {
 
 }

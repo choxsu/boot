@@ -2,7 +2,7 @@ package com.choxsu.service.impl;
 
 import com.choxsu.common.entity.IpRepository;
 import com.choxsu.common.mapper.IpRepositoryMapper;
-import com.choxsu.service.IIpRepositoryService;
+import com.choxsu.service.IpRepositoryService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2019-07-14
  */
 @Service
-public class IpRepositoryServiceImpl extends ServiceImpl<IpRepositoryMapper, IpRepository> implements IIpRepositoryService {
+public class IpRepositoryServiceImpl extends ServiceImpl<IpRepositoryMapper, IpRepository> implements IpRepositoryService {
 
 }

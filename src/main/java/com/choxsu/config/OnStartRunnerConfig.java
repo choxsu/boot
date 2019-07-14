@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
  * @date 2019/7/1
  */
 @Component
-public class RunAfterRunner implements CommandLineRunner, Ordered {
+public class OnStartRunnerConfig implements CommandLineRunner, Ordered {
 
 
     @Override

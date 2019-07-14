@@ -5,3 +5,15 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/choxsu?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&tinyInt1isBit=true
     username: root
     password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    # Hikari config
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimum-idle: 8
+      maximum-pool-size: 20
+      auto-commit: true
+      idle-timeout: 30000
+      pool-name: DatebookHikariCP
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1

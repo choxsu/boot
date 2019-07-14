@@ -6,14 +6,11 @@ import com.choxsu.utils.BaseUtil;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
-import com.jfinal.plugin.ehcache.EhCachePlugin;
-import com.jfinal.plugin.hikaricp.HikariCpPlugin;
 import com.jfinal.template.source.ClassPathSourceFactory;
+import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import javax.annotation.PostConstruct;
@@ -25,29 +22,24 @@ import java.sql.Connection;
  * @date 2019/7/1
  */
 @Configuration
-@EnableAutoConfiguration(exclude = DataSourceAutoConfiguration.class)
 public class ChoxsuConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(ChoxsuConfiguration.class);
 
-    @Value("${spring.datasource.url}")
-    private String url;
+    private final HikariDataSource hikariDataSource;
 
-    @Value("${spring.datasource.username}")
-    private String username;
-
-    @Value("${spring.datasource.password}")
-    private String password;
+    @Autowired
+    public ChoxsuConfiguration(HikariDataSource hikariDataSource) {
+        this.hikariDataSource = hikariDataSource;
+    }
 
     /**
      * Initialization
      */
     @PostConstruct
     public void openConnection() {
-        HikariCpPlugin hikariCpPlugin = new HikariCpPlugin(url, username, password);
-        hikariCpPlugin.start();
         // 配置ActiveRecord插件
-        ActiveRecordPlugin arp = new ActiveRecordPlugin(hikariCpPlugin);
+        ActiveRecordPlugin arp = new ActiveRecordPlugin(hikariDataSource);
         arp.setDialect(new MysqlDialect());
         arp.setCache(CaffeineCache.me);
         arp.setTransactionLevel(Connection.TRANSACTION_READ_COMMITTED);

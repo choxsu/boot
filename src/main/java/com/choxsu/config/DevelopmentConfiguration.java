@@ -14,5 +14,4 @@ import org.springframework.context.annotation.Profile;
 @Profile("development")
 public class DevelopmentConfiguration {
 
-
 }

@@ -17,7 +17,6 @@ public class Application {
         // off banner mode
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);
-
         // Startup mode 2
 //        new SpringApplicationBuilder()
 //                .sources(Application.class)

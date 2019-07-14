@@ -1,0 +1,7 @@
+spring:
+  profiles:
+    active: db
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/choxsu?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&tinyInt1isBit=true
+    username: root
+    password: root

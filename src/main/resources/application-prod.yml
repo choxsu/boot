@@ -19,3 +19,9 @@ spring:
       max-lifetime: 1800000
       connection-timeout: 30000
       connection-test-query: SELECT 1
+  redis:
+    url: 127.0.0.1
+    port: 6379
+    password:
+    timeout: 10000
+    database: 0

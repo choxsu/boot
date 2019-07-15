@@ -6,6 +6,7 @@ import com.choxsu.Application;
 import com.choxsu.common.entity.Account;
 import com.choxsu.config.ApplicationArgumentsConfig;
 import com.choxsu.service.AccountService;
+import com.choxsu.utils.RedisUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,6 +31,8 @@ public class TestApplication {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    RedisUtil redisUtil;
 
     @Test
     public void debugInfo() {
@@ -44,14 +47,21 @@ public class TestApplication {
         System.out.println("page.getPages() = " + page.getPages());
     }
 
+    @Test
+    public void test() {
+
+    }
+
     @Before
     public void testBefore(){
         System.out.println("before");
+        redisUtil.setCache("k", "v");
     }
 
     @After
     public void testAfter(){
         System.out.println("after");
+        redisUtil.getCache("k");
     }
 
 }

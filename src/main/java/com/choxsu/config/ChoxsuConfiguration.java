@@ -15,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import java.io.File;
 import java.sql.Connection;
 import java.util.Arrays;
@@ -33,15 +34,10 @@ public class ChoxsuConfiguration {
 
     private static final Logger logger = LoggerFactory.getLogger(ChoxsuConfiguration.class);
 
-    private final HikariDataSource hikariDataSource;
-
-    private final ConfigurableEnvironment environment;
-
-    @Autowired
-    public ChoxsuConfiguration(HikariDataSource hikariDataSource, ConfigurableEnvironment environment) {
-        this.hikariDataSource = hikariDataSource;
-        this.environment = environment;
-    }
+    @Resource
+    private HikariDataSource hikariDataSource;
+    @Resource
+    private ConfigurableEnvironment environment;
 
     /**
      * Initialization

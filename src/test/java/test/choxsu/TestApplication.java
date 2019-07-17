@@ -3,7 +3,6 @@ package test.choxsu;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.choxsu.Application;
-import com.choxsu.common.entity.Account;
 import com.choxsu.config.ApplicationArgumentsConfig;
 import com.choxsu.service.AccountService;
 import com.choxsu.utils.RedisUtil;
@@ -12,10 +11,12 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
+import javax.annotation.Resource;
 
 /**
  * @author choxsu
@@ -30,9 +31,6 @@ public class TestApplication {
 
     @Autowired
     private AccountService accountService;
-
-    @Autowired
-    RedisUtil redisUtil;
 
     @Test
     public void debugInfo() {
@@ -55,13 +53,13 @@ public class TestApplication {
     @Before
     public void testBefore(){
         System.out.println("before");
-        redisUtil.setCache("k", "v");
+        RedisUtil.set("123", "456");
     }
 
     @After
     public void testAfter(){
         System.out.println("after");
-        redisUtil.getCache("k");
+        System.out.println("redisUtil.get(\"123\") = " + RedisUtil.get("123"));
     }
 
 }

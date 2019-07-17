@@ -47,6 +47,9 @@ public class Account extends Model<Account> implements UserDetails {
     @TableField("salt")
     private String salt;
 
+    /**
+     * 0:正常 -1:无效 1:锁定
+     */
     @TableField("status")
     private Integer status;
 
@@ -94,21 +97,21 @@ public class Account extends Model<Account> implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return this.status != -1;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return this.status != 1;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 }

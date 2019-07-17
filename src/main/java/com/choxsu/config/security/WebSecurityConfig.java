@@ -62,36 +62,38 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         o.setAccessDecisionManager(urlAccessDecisionManager);
                         return o;
                     }
-                }).and().formLogin().loginPage("/login_p").loginProcessingUrl("/login").usernameParameter("username").passwordParameter("password").permitAll().failureHandler(new AuthenticationFailureHandler() {
-            @Override
-            public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException, ServletException {
-                httpServletResponse.setContentType("application/json;charset=utf-8");
-                PrintWriter out = httpServletResponse.getWriter();
-                StringBuffer sb = new StringBuffer();
-                sb.append("{\"status\":\"error\",\"msg\":\"");
-                if (e instanceof UsernameNotFoundException || e instanceof BadCredentialsException) {
-                    sb.append("用户名或密码输入错误，登录失败!");
-                } else if (e instanceof DisabledException) {
-                    sb.append("账户被禁用，登录失败，请联系管理员!");
-                } else {
-                    sb.append("登录失败!");
-                }
-                sb.append("\"}");
-                out.write(sb.toString());
-                out.flush();
-                out.close();
-            }
-        }).successHandler(new AuthenticationSuccessHandler() {
-            @Override
-            public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
-                httpServletResponse.setContentType("application/json;charset=utf-8");
-                PrintWriter out = httpServletResponse.getWriter();
-                ObjectMapper objectMapper = new ObjectMapper();
-                String s = "{\"status\":\"success\",\"msg\":" + objectMapper.writeValueAsString(AccountUtils.getCurrentAccount()) + "}";
-                out.write(s);
-                out.flush();
-                out.close();
-            }
+                })
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .loginProcessingUrl("/login")
+                .usernameParameter("username")
+                .passwordParameter("password")
+                .permitAll()
+                .failureHandler((httpServletRequest, httpServletResponse, e) -> {
+                    httpServletResponse.setContentType("application/json;charset=utf-8");
+                    PrintWriter out = httpServletResponse.getWriter();
+                    StringBuffer sb = new StringBuffer();
+                    sb.append("{\"status\":\"error\",\"msg\":\"");
+                    if (e instanceof UsernameNotFoundException || e instanceof BadCredentialsException) {
+                        sb.append("用户名或密码输入错误，登录失败!");
+                    } else if (e instanceof DisabledException) {
+                        sb.append("账户被禁用，登录失败，请联系管理员!");
+                    } else {
+                        sb.append("登录失败!");
+                    }
+                    sb.append("\"}");
+                    out.write(sb.toString());
+                    out.flush();
+                    out.close();
+                }).successHandler((httpServletRequest, httpServletResponse, authentication) -> {
+            httpServletResponse.setContentType("application/json;charset=utf-8");
+            PrintWriter out = httpServletResponse.getWriter();
+            ObjectMapper objectMapper = new ObjectMapper();
+            String s = "{\"status\":\"success\",\"msg\":" + objectMapper.writeValueAsString(AccountUtils.getCurrentAccount()) + "}";
+            out.write(s);
+            out.flush();
+            out.close();
         }).and().logout().permitAll().and().csrf().disable().exceptionHandling().accessDeniedHandler(authenticationAccessDeniedHandler);
     }
 }

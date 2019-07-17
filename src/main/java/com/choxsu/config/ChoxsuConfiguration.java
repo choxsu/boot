@@ -2,9 +2,6 @@ package com.choxsu.config;
 
 import com.choxsu.common._MappingKit;
 import com.choxsu.config.cache.CaffeineCache;
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.PropertyAccessor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
@@ -13,16 +10,9 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.context.annotation.Bean;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
-import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
-import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 import javax.annotation.PostConstruct;
 import java.io.File;
@@ -34,11 +24,12 @@ import java.util.Arrays;
  * @date 2019/7/1
  */
 @Configuration
+@EnableCaching
 public class ChoxsuConfiguration {
     /**
      * 开发环境识别码
      */
-    private static final String DEV = "development";
+    private static final String DEV = "dev";
 
     private static final Logger logger = LoggerFactory.getLogger(ChoxsuConfiguration.class);
 

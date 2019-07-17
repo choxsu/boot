@@ -54,6 +54,12 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
+        <!--add spring security dependency-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
         <!--add jdbc dependency-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

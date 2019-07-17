@@ -106,6 +106,12 @@
             <artifactId>HikariCP</artifactId>
         </dependency>
 
+        <!-- springboot cache enable-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-cache</artifactId>
+        </dependency>
+
         <!-- caffeine cache-->
         <dependency>
             <groupId>com.github.ben-manes.caffeine</groupId>

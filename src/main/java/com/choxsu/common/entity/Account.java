@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -74,6 +75,7 @@ public class Account extends Model<Account> implements UserDetails {
     @TableField("isThird")
     private Integer isThird;
 
+    @TableField(exist = false)
     private List<Role> roles;
 
     @Override

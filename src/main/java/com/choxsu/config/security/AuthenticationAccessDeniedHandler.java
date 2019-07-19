@@ -1,5 +1,7 @@
 package com.choxsu.config.security;
 
+import com.choxsu.common.ret.Ret;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
@@ -22,7 +24,8 @@ public class AuthenticationAccessDeniedHandler implements AccessDeniedHandler {
         response.setStatus(HttpServletResponse.SC_FORBIDDEN);
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
-        out.write("{\"status\":\"error\",\"msg\":\"权限不足，请联系管理员!\"}");
+        Ret error = Ret.error("权限不足，请联系管理员!");
+        out.write(new ObjectMapper().writeValueAsString(error));
         out.flush();
         out.close();
     }

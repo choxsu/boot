@@ -23,3 +23,6 @@ spring:
     password:
     timeout: 10000
     database: 0
+logging:
+  level:
+    com.choxsu.common.mapper: debug

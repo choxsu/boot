@@ -15,3 +15,5 @@ mybatis-plus:
   # 支持统配符 * 或者 ; 分割
   type-enums-package: com.choxsu.common.enums
   type-aliases-package: com.choxsu.common.entity
+shiro:
+  loginUrl: /login

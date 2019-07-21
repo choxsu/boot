@@ -19,6 +19,11 @@ public class UserRealm extends CachingRealm {
     AccountService accountService;
 
     @Override
+    public String getName() {
+        return "choxsu_realm";
+    }
+
+    @Override
     public boolean supports(AuthenticationToken token) {
         return token instanceof UsernamePasswordToken;
     }

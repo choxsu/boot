@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.choxsu.Application;
 import com.choxsu.config.ApplicationArgumentsConfig;
+import com.choxsu.config.rabbitmq.SendBean;
 import com.choxsu.service.AccountService;
 import com.choxsu.utils.RedisUtil;
 import org.junit.After;
@@ -32,6 +33,9 @@ public class TestApplication {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private SendBean sendBean;
+
     @Test
     public void debugInfo() {
         System.out.println("argumentsConfig.containsDebugOption() = " + argumentsConfig.containsDebugOption());
@@ -46,20 +50,22 @@ public class TestApplication {
     }
 
     @Test
-    public void test() {
-
+    public void testRabbit() {
+//        for (int i = 0; i < 100; i++) {
+            sendBean.sendChoxsu();
+//        }
     }
 
     @Before
     public void testBefore(){
         System.out.println("before");
-        RedisUtil.set("123", "456");
+        //RedisUtil.set("123", "456");
     }
 
     @After
     public void testAfter(){
         System.out.println("after");
-        System.out.println("redisUtil.get(\"123\") = " + RedisUtil.get("123"));
+        //System.out.println("redisUtil.get(\"123\") = " + RedisUtil.get("123"));
     }
 
 }

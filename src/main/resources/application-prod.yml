@@ -32,6 +32,8 @@ spring:
       retry:
         enabled: true
         initial-interval: 2s
+  main:
+    allow-bean-definition-overriding: true
 logging:
   level:
     com.choxsu.common.mapper: error

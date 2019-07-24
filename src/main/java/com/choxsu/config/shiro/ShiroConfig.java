@@ -17,12 +17,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ShiroConfig {
 
-    @Autowired
-    UserRealm userRealm;
-
     @Bean
     public Realm userRealm() {
-        return userRealm;
+        return new UserRealm();
     }
 
     @Bean

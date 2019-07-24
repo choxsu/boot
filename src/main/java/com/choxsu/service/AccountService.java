@@ -1,8 +1,7 @@
 package com.choxsu.service;
 
-import com.choxsu.common.entity.Account;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import com.choxsu.common.entity.Account;
 
 /**
  * <p>
@@ -12,7 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * @author choxsu
  * @since 2019-07-14
  */
-public interface AccountService extends IService<Account>, UserDetailsService {
+public interface AccountService extends IService<Account> {
 
     /**
      * 获取账号通过username

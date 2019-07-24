@@ -32,3 +32,6 @@ spring:
       retry:
         enabled: true
         initial-interval: 2s
+logging:
+  level:
+    com.choxsu.common.mapper: debug

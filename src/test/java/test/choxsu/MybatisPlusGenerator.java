@@ -33,10 +33,13 @@ public class MybatisPlusGenerator {
         generator.setStrategy(strategy);
         // 包配置
         PackageConfig pc = new PackageConfig();
-        pc.setParent("com.choxsu")
+        pc.setParent("com.zskj.job.executor")
                 .setModuleName("")
-                .setEntity("common.entity")
-                .setMapper("common.mapper");
+                .setEntity("entity.mp")
+                .setMapper("core.mapper")
+                .setService("service.mp")
+                .setServiceImpl("service.mp.impl");
+
         generator.setPackageInfo(pc);
         generator.setCfg(new InjectionConfig() {
             @Override

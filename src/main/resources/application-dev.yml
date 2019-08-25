@@ -23,15 +23,6 @@ spring:
     password:
     timeout: 10000
     database: 0
-  rabbitmq:
-    host: 192.168.3.131
-    port: 5672
-    username: admin
-    password: 123456
-    template:
-      retry:
-        enabled: true
-        initial-interval: 5s
   main:
     allow-bean-definition-overriding: true
 logging:

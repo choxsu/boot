@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.choxsu</groupId>
-    <artifactId>boot</artifactId>
+    <artifactId>choxsu-api</artifactId>
     <version>1.0.0</version>
 
     <properties>

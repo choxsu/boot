@@ -54,6 +54,12 @@
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
 
+        <!-- spring boot aop starter dependency -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
         <!--add jdbc dependency-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

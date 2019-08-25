@@ -14,6 +14,15 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Ret {
+
+    /**
+     * 业务校验失败 ， 需要弹窗
+     */
+    private static final int BUSINESS_MSG_ERR = 10008;
+    /**
+     * 业务校验失败 ， 不需要弹窗
+     */
+    private static final int BUSINESS_ERR = 10009;
     /**
      * 参数错误码
      */
@@ -56,4 +65,11 @@ public class Ret {
         return new Ret(SYS_ERR, "系统错误，请联系管理员！", null);
     }
 
+    public static Ret businessErr(String msg) {
+        return new Ret(BUSINESS_MSG_ERR, msg, null);
+    }
+
+    public static Ret businessErr() {
+        return new Ret(BUSINESS_ERR, "业务校验失败，请重试！", null);
+    }
 }

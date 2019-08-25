@@ -150,7 +150,7 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <configuration>
-                    <mainClass>com.choxsu.Application</mainClass>
+                    <mainClass>com.choxsu.ChoxsuApplication</mainClass>
                 </configuration>
                 <executions>
                     <execution>

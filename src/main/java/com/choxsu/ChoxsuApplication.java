@@ -9,11 +9,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @date 2019/7/1
  */
 @SpringBootApplication
-public class Application {
+public class ChoxsuApplication {
 
     public static void main(String[] args) {
         // Startup mode 1
-        SpringApplication application = new SpringApplication(Application.class);
+        SpringApplication application = new SpringApplication(ChoxsuApplication.class);
         // off banner mode
         application.setBannerMode(Banner.Mode.OFF);
         application.run(args);

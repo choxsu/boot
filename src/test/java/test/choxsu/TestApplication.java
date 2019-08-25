@@ -2,29 +2,23 @@ package test.choxsu;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.choxsu.Application;
+import com.choxsu.ChoxsuApplication;
 import com.choxsu.config.ApplicationArgumentsConfig;
-import com.choxsu.config.rabbitmq.SendBean;
 import com.choxsu.service.AccountService;
-import com.choxsu.utils.RedisUtil;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import javax.annotation.Resource;
 
 /**
  * @author choxsu
  * @date 2019/7/14
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = ChoxsuApplication.class)
 public class TestApplication {
 
     @Autowired
@@ -32,9 +26,6 @@ public class TestApplication {
 
     @Autowired
     private AccountService accountService;
-
-    @Autowired
-    private SendBean sendBean;
 
     @Test
     public void debugInfo() {
@@ -47,13 +38,6 @@ public class TestApplication {
         IPage page = accountService.page(iPage);
         System.out.println(page.getRecords().toString());
         System.out.println("page.getPages() = " + page.getPages());
-    }
-
-    @Test
-    public void testRabbit() {
-//        for (int i = 0; i < 100; i++) {
-            sendBean.sendChoxsu();
-//        }
     }
 
     @Before

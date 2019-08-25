@@ -1,7 +1,5 @@
 package com.choxsu.config;
 
-import com.choxsu.config.rabbitmq.SendBean;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.Ordered;
 import org.springframework.stereotype.Component;
@@ -20,10 +18,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class OnStartRunnerConfig implements CommandLineRunner, Ordered {
 
-    @Autowired
-    SendBean sendBean;
-
-    @Override
     public void run(String... args) throws Exception {
         // Do something...
         // sendBean.sendChoxsu();

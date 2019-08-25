@@ -6,17 +6,20 @@ import java.util.Map;
 import java.util.concurrent.*;
 
 /**
+ * 单例 线程超时队列
+ *
  * @author choxsu
  * @date 2019/7/15
  */
 @Slf4j
 public class TaskSchedule {
 
-    private static final ScheduledExecutorService scheduledExecutor = Executors.newScheduledThreadPool(1);
+    private static final ScheduledExecutorService scheduledExecutor = Executors.newSingleThreadScheduledExecutor();
     private static final Map<String, Object> runnableList = new ConcurrentHashMap<>(16);
     private static final TaskSchedule me = new TaskSchedule();
 
-    private TaskSchedule() { }
+    private TaskSchedule() {
+    }
 
     /**
      * 将超时任务给超时队列执行

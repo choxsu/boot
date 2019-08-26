@@ -1,6 +1,5 @@
 package com.choxsu.aop;
 
-import com.jfinal.kit.LogKit;
 import com.jfinal.plugin.activerecord.ActiveRecordException;
 import com.jfinal.plugin.activerecord.Config;
 import com.jfinal.plugin.activerecord.DbKit;

@@ -49,6 +49,10 @@ public class Ret {
         return new Ret(1, msg, null);
     }
 
+    public static Ret ok() {
+        return new Ret(1, "操作成功", null);
+    }
+
     public static Ret error(String msg, Object data) {
         return new Ret(0, msg, data);
     }
@@ -57,8 +61,16 @@ public class Ret {
         return new Ret(0, msg, null);
     }
 
+    public static Ret error() {
+        return new Ret(0, "操作失败", null);
+    }
+
     public static Ret paramError() {
         return new Ret(PARAM_ERR, "参数错误，请检查参数！", null);
+    }
+
+    public static Ret paramError(String msg) {
+        return new Ret(PARAM_ERR, msg, null);
     }
 
     public static Ret sysError() {

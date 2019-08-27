@@ -2,7 +2,10 @@ package com.choxsu.blog.login;
 
 import com.choxsu.common.ret.Ret;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author choxsu
@@ -11,10 +14,31 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
-    @PostMapping(value = "/auth/login")
-    public Ret login() {
+    @Resource
+    private LoginService loginService;
 
-        return Ret.paramError();
+    /**
+     * @param loginType  登录类型   1 账号或密码（默认）  2 手机号
+     * @param phone      手机号
+     * @param code       验证码
+     * @param username   用户名或邮箱
+     * @param password   密码
+     * @param rememberMe 是否记住我  true是 false否
+     */
+    @PostMapping(value = "/auth/login")
+    public Ret login(@RequestParam(defaultValue = "1") Integer loginType,
+                     String username,
+                     String phone,
+                     String password,
+                     String code,
+                     @RequestParam(required = false, defaultValue = "false") Boolean rememberMe) {
+        if (loginType == null || loginType == 1) {
+            return loginService.loginByUsername(username, password, rememberMe);
+        }
+        return loginService.loginByPhone(phone, code, rememberMe);
     }
+
+
+
 
 }

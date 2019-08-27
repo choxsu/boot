@@ -26,19 +26,17 @@ public class LoginController {
      * @param rememberMe 是否记住我  true是 false否
      */
     @PostMapping(value = "/auth/login")
-    public Ret login(@RequestParam(defaultValue = "1") Integer loginType,
+    public Ret login(@RequestParam Integer loginType,
+                     @RequestParam(required = false, defaultValue = "false") Boolean rememberMe,
                      String username,
                      String phone,
                      String password,
-                     String code,
-                     @RequestParam(required = false, defaultValue = "false") Boolean rememberMe) {
+                     String code) {
         if (loginType == null || loginType == 1) {
             return loginService.loginByUsername(username, password, rememberMe);
         }
         return loginService.loginByPhone(phone, code, rememberMe);
     }
-
-
 
 
 }

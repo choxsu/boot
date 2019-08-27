@@ -41,8 +41,7 @@ public class JFinalTxAop {
      * @within 表示注解在类下面所有的方法
      */
     @Pointcut("@within(org.springframework.transaction.annotation.Transactional)")
-    private void methodWithin() {
-    }
+    private void methodWithin() {  }
 
     /**
      * 自定义JFinal 事物注解:方法上面
@@ -50,8 +49,7 @@ public class JFinalTxAop {
      * @annotation 表示注解只能支持方法上
      */
     @Pointcut("@annotation(org.springframework.transaction.annotation.Transactional)")
-    private void methodAnnotation() {
-    }
+    private void methodAnnotation() {  }
 
     /**
      * 兼容@Transactional可以放在类上和方法上

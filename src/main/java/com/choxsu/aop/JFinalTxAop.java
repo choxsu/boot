@@ -60,7 +60,7 @@ public class JFinalTxAop {
      *
      * @param pjp 切入点目标对象
      * @return 返回切入方法的返回数据
-     * @throws Throwable
+     * @throws Throwable 返回事物错误
      */
     @Around(value = "methodWithin() || methodAnnotation()")
     public Object doAround(ProceedingJoinPoint pjp) throws Throwable {

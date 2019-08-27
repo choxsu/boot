@@ -1,5 +1,6 @@
-package com.choxsu.controller.login;
+package com.choxsu.blog.login;
 
+import com.choxsu.common.ret.Ret;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,5 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginController {
 
+    @PostMapping(value = "/auth/login")
+    public Ret login() {
+
+        return Ret.paramError();
+    }
 
 }

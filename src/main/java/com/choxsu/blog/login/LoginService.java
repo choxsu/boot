@@ -37,7 +37,9 @@ public class LoginService {
      * @return 验证结果或成功结果
      */
     public Ret loginByPhone(String phone, String code, Boolean rememberMe) {
-
+        if (StringUtils.isBlank(phone) || StringUtils.isBlank(code)) {
+            return Ret.paramError("当选择手机登录时，必须填写手机号和验证码");
+        }
         return Ret.ok("登录成功");
     }
 }

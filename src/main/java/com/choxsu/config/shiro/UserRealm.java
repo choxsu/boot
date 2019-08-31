@@ -112,8 +112,8 @@ public class UserRealm extends AuthorizingRealm {
             authorizationInfo.addRole(role.getName());
             //获取权限
             List<Permission> authorityList = permissionService.findByRoleId(role.getId());
-            for (Permission prem : authorityList) {
-                authorizationInfo.addStringPermission(prem.getActionKey());
+            for (Permission perm : authorityList) {
+                authorizationInfo.addStringPermission(perm.getActionKey());
             }
         }
         return authorizationInfo;

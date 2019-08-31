@@ -28,3 +28,4 @@ spring:
 logging:
   level:
     com.choxsu.common.mapper: debug
+    io.swagger.models.parameters.AbstractSerializableParameter: error

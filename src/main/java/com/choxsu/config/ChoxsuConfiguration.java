@@ -1,6 +1,7 @@
 package com.choxsu.config;
 
 import com.choxsu.common._MappingKit;
+import com.choxsu.common.jwt.JwtProperties;
 import com.choxsu.config.cache.CaffeineCache;
 import com.jfinal.kit.PathKit;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
@@ -10,6 +11,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -26,6 +28,7 @@ import java.util.Arrays;
  */
 @Configuration
 @EnableCaching
+@EnableConfigurationProperties(JwtProperties.class)
 public class ChoxsuConfiguration {
     /**
      * 开发环境识别码

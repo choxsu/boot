@@ -8,6 +8,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,5 +26,11 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
     @Cacheable(cacheNames = "permission")
     public List<Permission> getAllPermission() {
         return list();
+    }
+
+    @Override
+    public List<Permission> findByRoleId(Integer roleId) {
+
+        return new ArrayList<>();
     }
 }

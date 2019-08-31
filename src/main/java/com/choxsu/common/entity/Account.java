@@ -25,6 +25,17 @@ import java.util.List;
 @Accessors(chain = true)
 public class Account extends Model<Account> {
 
+
+    public Account() {
+    }
+
+    public Account(String account) {
+        this.account = account;
+    }
+
+    @TableField(exist = false)
+    private String account;
+
     private static final long serialVersionUID=1L;
 
     @TableId(value = "id", type = IdType.AUTO)

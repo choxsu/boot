@@ -2,6 +2,9 @@ package com.choxsu.blog.login;
 
 import com.choxsu.common.BaseController;
 import com.choxsu.common.ret.Ret;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,6 +15,7 @@ import javax.annotation.Resource;
  * @author choxsu
  * @date 2019/7/19
  */
+@Api(tags = {"用户接口"})
 @RestController
 public class LoginController extends BaseController {
 
@@ -26,13 +30,14 @@ public class LoginController extends BaseController {
      * @param password   密码
      * @param rememberMe 是否记住我  true是 false否
      */
+    @ApiOperation(value = "登录接口")
     @PostMapping(value = "/auth/login")
-    public Ret login(@RequestParam Integer loginType,
-                     @RequestParam(required = false, defaultValue = "false") Boolean rememberMe,
-                     String username,
-                     String phone,
-                     String password,
-                     String code) {
+    public Ret login(@ApiParam(value = "登录类型") @RequestParam Integer loginType,
+                     @ApiParam(value = "是否记住我", defaultValue = "false") @RequestParam(required = false, defaultValue = "false") Boolean rememberMe,
+                     @ApiParam(value = "用户名") @RequestParam(required = false) String username,
+                     @ApiParam(value = "密码" ) @RequestParam(required = false) String password,
+                     @ApiParam(value = "手机号") @RequestParam(required = false) String phone,
+                     @ApiParam(value = "短信验证码") @RequestParam(required = false) String code) {
         if (loginType == null || loginType == 1) {
             return loginService.loginByUsername(username, password, rememberMe);
         }

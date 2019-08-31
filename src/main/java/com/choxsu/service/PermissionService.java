@@ -20,4 +20,11 @@ public interface PermissionService extends IService<Permission> {
      * @return
      */
     List<Permission> getAllPermission();
+
+    /**
+     * 获取权限通过角色id
+     * @param roleId
+     * @return
+     */
+    List<Permission> findByRoleId(Integer roleId);
 }

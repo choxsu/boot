@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ import java.util.List;
 @Service
 public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> implements AccountService {
 
-    @Autowired
+    @Resource
     RoleService roleService;
 
     @Cacheable(cacheNames = "account", key = "#username")
@@ -32,7 +33,11 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
     public Account findAccountByUsername(String username) {
         LambdaQueryWrapper<Account> wrapper = new LambdaQueryWrapper<>();
         wrapper.eq(Account::getUserName, username);
+        wrapper.last("limit 1");
         Account account = baseMapper.selectOne(wrapper);
+        if (account == null) {
+            return null;
+        }
         // 查询用户关联的所有角色信息
         List<Role> roleList = roleService.listByAccount(account);
         account.setRoles(roleList);

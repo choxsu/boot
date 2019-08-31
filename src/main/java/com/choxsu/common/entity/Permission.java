@@ -38,10 +38,6 @@ public class Permission extends Model<Permission> {
     @TableField("remark")
     private String remark;
 
-    @TableField(exist = false)
-    private List<Role> roles;
-
-
     @Override
     protected Serializable pkVal() {
         return this.id;

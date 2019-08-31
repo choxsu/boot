@@ -1,5 +1,6 @@
 package com.choxsu.blog.login;
 
+import com.choxsu.common.BaseController;
 import com.choxsu.common.ret.Ret;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,7 @@ import javax.annotation.Resource;
  * @date 2019/7/19
  */
 @RestController
-public class LoginController {
+public class LoginController extends BaseController {
 
     @Resource
     private LoginService loginService;

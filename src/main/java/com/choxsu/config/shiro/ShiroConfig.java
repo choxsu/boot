@@ -1,18 +1,18 @@
 package com.choxsu.config.shiro;
 
 import com.choxsu.common.jwt.JwtFilter;
-import org.apache.shiro.cache.CacheManager;
-import org.apache.shiro.cache.MemoryConstrainedCacheManager;
 import org.apache.shiro.mgt.DefaultSessionStorageEvaluator;
 import org.apache.shiro.mgt.DefaultSubjectDAO;
-import org.apache.shiro.realm.Realm;
+import org.apache.shiro.spring.LifecycleBeanPostProcessor;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.spring.web.config.DefaultShiroFilterChainDefinition;
 import org.apache.shiro.spring.web.config.ShiroFilterChainDefinition;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import javax.servlet.Filter;
 import java.util.HashMap;
@@ -27,19 +27,30 @@ import java.util.Map;
 public class ShiroConfig {
 
     @Bean
-    public Realm userRealm() {
-        return new UserRealm();
+    public LifecycleBeanPostProcessor lifecycleBeanPostProcessor() {
+        return new LifecycleBeanPostProcessor();
     }
 
     @Bean
-    protected CacheManager cacheManager() {
-        return new MemoryConstrainedCacheManager();
+    @DependsOn("lifecycleBeanPostProcessor")
+    public static DefaultAdvisorAutoProxyCreator getLifecycleBeanPostProcessor() {
+        DefaultAdvisorAutoProxyCreator defaultAdvisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        // 强制使用cglib
+        defaultAdvisorAutoProxyCreator.setProxyTargetClass(true);
+        return defaultAdvisorAutoProxyCreator;
     }
 
     @Bean
-    public DefaultWebSecurityManager securityManager(ShiroCacheManager shiroCacheManager) {
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(DefaultWebSecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor advisor = new AuthorizationAttributeSourceAdvisor();
+        advisor.setSecurityManager(securityManager);
+        return advisor;
+    }
+
+    @Bean
+    public DefaultWebSecurityManager securityManager(UserRealm userRealm, ShiroCacheManager shiroCacheManager) {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
-        securityManager.setRealm(userRealm());
+        securityManager.setRealm(userRealm);
         //关闭shiro自带的session
         DefaultSubjectDAO subjectDAO = new DefaultSubjectDAO();
         DefaultSessionStorageEvaluator defaultSessionStorageEvaluator = new DefaultSessionStorageEvaluator();
@@ -77,26 +88,6 @@ public class ShiroConfig {
         // all other paths require a logged in user
         chainDefinition.addPathDefinition("/**", "authc");
         return chainDefinition;
-    }
-
-    @Bean
-    public ShiroFilterFactoryBean shiroFilter(DefaultWebSecurityManager securityManager) {
-        ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
-        shiroFilter.setSecurityManager(securityManager);
-
-        // 添加jwt过滤器
-        Map<String, Filter> filterMap = new HashMap<>();
-        filterMap.put("jwt", jwtFilter());
-//        filterMap.put("logout", new SystemLogoutFilter());
-        shiroFilter.setFilters(filterMap);
-
-        //拦截器
-        Map<String, String> filterRuleMap = new LinkedHashMap<>();
-        filterRuleMap.put("/logout", "logout");
-        filterRuleMap.put("/**", "jwt");
-        shiroFilter.setFilterChainDefinitionMap(filterRuleMap);
-
-        return shiroFilter;
     }
 
     @Bean

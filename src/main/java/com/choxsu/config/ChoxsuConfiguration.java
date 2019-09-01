@@ -27,7 +27,6 @@ import java.util.Arrays;
  * @date 2019/7/1
  */
 @Configuration
-@EnableCaching
 @EnableConfigurationProperties(JwtProperties.class)
 public class ChoxsuConfiguration {
     /**

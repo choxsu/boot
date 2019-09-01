@@ -76,16 +76,16 @@ public class UserRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken auth) throws AuthenticationException {
         String token = (String) auth.getPrincipal();
-        String account = JwtUtil.getClaim(token, SecurityConstant.ACCOUNT);
-        if (account == null) {
+        String username = JwtUtil.getClaim(token, SecurityConstant.ACCOUNT);
+        if (username == null) {
             throw new AuthenticationException("账户无效");
         }
-        Account accountByUsername = accountService.findAccountByUsername(token);
+        Account accountByUsername = accountService.findAccountByUsername(username);
         if (accountByUsername == null) {
             throw new AuthenticationException("账户不存在！");
         }
 
-        String refreshTokenCacheKey = SecurityConstant.PREFIX_SHIRO_REFRESH_TOKEN + account;
+        String refreshTokenCacheKey = SecurityConstant.PREFIX_SHIRO_REFRESH_TOKEN + username;
         if (JwtUtil.verify(token) && RedisUtil.exists(refreshTokenCacheKey)) {
             String currentTimeMillisRedis = RedisUtil.get(refreshTokenCacheKey);
             // 获取AccessToken时间戳，与RefreshToken的时间戳对比

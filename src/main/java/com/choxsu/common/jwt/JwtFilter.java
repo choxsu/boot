@@ -60,7 +60,7 @@ public class JwtFilter extends BasicHttpAuthenticationFilter {
 
         // 绑定上下文
         String account = JwtUtil.getClaim(authorization, SecurityConstant.ACCOUNT);
-        UserContext userContext = new UserContext(new Account(account));
+//        UserContext userContext = new UserContext(new Account(account));
         // 如果没有抛出异常则代表登入成功，返回true
         return true;
     }

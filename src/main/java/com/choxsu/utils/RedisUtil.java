@@ -46,6 +46,6 @@ public class RedisUtil implements ApplicationContextAware {
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        redisTemplate = applicationContext.getBean(RedisTemplate.class);
+        redisTemplate = (RedisTemplate) applicationContext.getBean("redisTemplate");
     }
 }

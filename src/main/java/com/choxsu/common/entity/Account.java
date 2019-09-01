@@ -29,12 +29,12 @@ public class Account extends Model<Account> {
     public Account() {
     }
 
-    public Account(String account) {
-        this.account = account;
-    }
-
-    @TableField(exist = false)
-    private String account;
+//    public Account(String account) {
+//        this.account = account;
+//    }
+//
+//    @TableField(exist = false)
+//    private String account;
 
     private static final long serialVersionUID=1L;
 
@@ -79,9 +79,6 @@ public class Account extends Model<Account> {
      */
     @TableField("isThird")
     private Integer isThird;
-
-    @TableField(exist = false)
-    private List<Role> roles;
 
     @Override
     protected Serializable pkVal() {

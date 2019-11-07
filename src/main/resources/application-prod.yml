@@ -5,7 +5,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/choxsu?characterEncoding=utf8&useSSL=false&autoReconnect=true&failOverReadOnly=false&tinyInt1isBit=true
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     # Hikari config
     type: com.zaxxer.hikari.HikariDataSource
     hikari:

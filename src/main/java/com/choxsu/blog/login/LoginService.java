@@ -17,6 +17,7 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -47,6 +48,7 @@ public class LoginService {
      * @param rememberMe 是否记住我  true是 false否
      * @return 验证结果或成功结果
      */
+    @Transactional
     public Ret loginByUsername(String username, String password, Boolean rememberMe) {
         if (StringUtils.isBlank(username) || StringUtils.isBlank(password)) {
             return Ret.paramError("当选择用户名或邮箱登录时，必须填写用户名或密码");
@@ -140,6 +142,7 @@ public class LoginService {
      * @param rememberMe 是否记住我  true是 false否
      * @return 验证结果或成功结果
      */
+    @Transactional
     public Ret loginByPhone(String phone, String code, Boolean rememberMe) {
         if (StringUtils.isBlank(phone) || StringUtils.isBlank(code)) {
             return Ret.paramError("当选择手机登录时，必须填写手机号和验证码");

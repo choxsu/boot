@@ -86,7 +86,8 @@ public class ShiroConfig {
         // login ignore
         chainDefinition.addPathDefinition("/auth/login", "anon");
         // all other paths require a logged in user
-        chainDefinition.addPathDefinition("/**", "authc");
+        chainDefinition.addPathDefinition("/**", "anon");
+//        chainDefinition.addPathDefinition("/**", "authc");
         return chainDefinition;
     }
 
